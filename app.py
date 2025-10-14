@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt     # 기본 차트
 import seaborn as sns              # 고급 시각화
 import plotly.express as px        # 인터랙티브 차트
 import plotly.graph_objects as go  # 커스텀 plotly 차트
+from plotly.subplots import make_subplots
 import os
 import warnings
 
@@ -890,4 +891,5 @@ st.markdown("""
         Powered by PhysioNet Data + Machine Learning + LangChain AI
     </p>
 </div>
+
 """, unsafe_allow_html=True)
