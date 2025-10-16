@@ -1,4 +1,6 @@
 # 혈압 예측 AI 프로젝트
+## Demo
+-- https://physionet-project-islom.streamlit.app/
 
 ## 프로젝트 소개
 PhysioNet 기반 혈압 예측 머신러닝 시스템
@@ -31,3 +33,4 @@ streamlit run app.py
 ├── models/                     # 모델 저장소
 └── results/                    # 결과물 저장소
 ```
+
