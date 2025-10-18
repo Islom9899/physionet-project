@@ -14,7 +14,7 @@ try:
     from pydantic import BaseModel, Field
     from langchain-openai import ChatOpenAI
     from langchain.schema import HumanMessage, SystemMessage
-    from langchain-openai import ChatOpenAI
+    from langchain_openai import ChatOpenAI
     
     LANGCHAIN_AVAILABLE = True
     print("✅ LangChain 라이브러리 로드 성공")
@@ -697,4 +697,5 @@ for i, implication in enumerate(dataset_analysis['clinical_implications'], 1):
 
 
 print(f"\n분석 출처: {dataset_analysis['source']}")
+
 
