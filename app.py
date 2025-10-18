@@ -16,7 +16,7 @@ warnings.filterwarnings('ignore')
 MODULES_LOADED = False
 try:
     from physionet_predictor import * # 혈압 예측 모델 모듈
-    from langchain-processor import * # AI 분석 (랭체인) 모듈
+    from langchain_processor import * # AI 분석 (랭체인) 모듈
     MODULES_LOADED = True
 except ImportError as e:
     # 모듈 없어도 기본 기능은 작동하도록 설계
@@ -893,4 +893,5 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
