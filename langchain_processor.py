@@ -8,14 +8,13 @@ from typing import Dict, List, Optional, Any
 import pandas as pd
 import numpy as np
 from dotenv import load_dotenv
+from pydantic import BaseModel, Field
 
 # LangChain 라이브러리 (선택적 임포트)
 try:
     from langchain_openai import ChatOpenAI
     from langchain.schema import HumanMessage, SystemMessage
     from langchain_openai import ChatOpenAI
-
-    from pydantic import BaseModel, Field
     LANGCHAIN_AVAILABLE = True
     print("✅ LangChain 라이브러리 로드 성공")
 except ImportError:
@@ -726,3 +725,4 @@ for i, implication in enumerate(dataset_analysis['clinical_implications'], 1):
     print(f"  {i}. {implication}")
 
 print(f"\n분석 출처: {dataset_analysis['source']}")
+
