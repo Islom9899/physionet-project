@@ -2,7 +2,6 @@
 # 1. 필요한 라이브러리 임포트
 # ============================================================
 # 기본 라이브러리
-import streamlit as st
 import os
 from datetime import datetime
 from typing import Dict, List, Optional, Any
@@ -21,6 +20,7 @@ try:
 except ImportError:
     print("⚠️ LangChain 라이브러리가 설치되지 않았습니다. 기본 분석 기능만 사용됩니다.")
     LANGCHAIN_AVAILABLE = False
+import streamlit as st
 try:
     if "OPENAI_API_KEY" in st.secrets:
         os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
@@ -735,6 +735,7 @@ for i, implication in enumerate(dataset_analysis['clinical_implications'], 1):
     print(f"  {i}. {implication}")
 
 print(f"\n분석 출처: {dataset_analysis['source']}")
+
 
 
 
