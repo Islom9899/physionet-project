@@ -21,20 +21,18 @@ try:
 except ImportError:
     print("⚠️ LangChain 라이브러리가 설치되지 않았습니다. 기본 분석 기능만 사용됩니다.")
     LANGCHAIN_AVAILABLE = False
+try:
+    if "OPENAI_API_KEY" in st.secrets:
+        os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+        print("✅ Streamlit Secrets에서 OPENAI_API_KEY 불러오기 성공")
+    else:
+        print("⚠️ Streamlit Secrets에 OPENAI_API_KEY가 없습니다.")
+except Exception as e:
+    print(f"⚠️ Streamlit Secrets 접근 중 오류: {e}")
 
-if "OPENAI_API_KEY" in st.secrets:
-    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-    print("✅ Streamlit Secrets에서 OPENAI_API_KEY 불러오기 성공")
-else:
-    # 로컬 실행 시 .env 파일 로드
-    load_dotenv(override=True)
-    print("✅ .env 파일 로드 완료")
-
-# 검증
-if os.getenv("OPENAI_API_KEY"):
-    print("✅ OpenAI API 키 감지 완료")
-else:
-    print("❌ OpenAI API 키가 감지되지 않았습니다.")
+# 로컬 .env 파일도 로드 (fallback)
+load_dotenv(override=True)
+print("✅ 환경 변수 로드 완료")
 
 # ============================================================
 # 2. Pydantic 모델 정의 (구조화된 출력)
@@ -737,6 +735,7 @@ for i, implication in enumerate(dataset_analysis['clinical_implications'], 1):
     print(f"  {i}. {implication}")
 
 print(f"\n분석 출처: {dataset_analysis['source']}")
+
 
 
 
