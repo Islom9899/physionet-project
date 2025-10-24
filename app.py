@@ -14,31 +14,25 @@ warnings.filterwarnings('ignore')
 
 # 모듈 로딩
 MODULES_LOADED = False
-
 try:
-    # Physionet predictor 관련 함수
+    # PhysioNet 혈압 예측기 관련 클래스 및 함수
     from physionet_predictor import (
-        load_model,
-        preprocess_patient_data,
-        predict_blood_pressure,
-        visualize_results,
+        PhysioNetBPPredictor,   # 핵심 혈압 예측 클래스
     )
 
-    # LangChain processor 관련 클래스
+    # LangChain AI 분석 모듈
     from langchain_processor import (
-        LangChainBPProcessor,
-        BloodPressureInsight,
-        DatasetInsight,
+        LangChainBPProcessor,   # GPT 기반 혈압 분석기
+        BloodPressureInsight,   # 개별 분석 결과 구조체
+        DatasetInsight          # 전체 데이터셋 분석 결과 구조체
     )
 
-    MODULES_LOADED = True  # ✅ 성공적으로 불러옴
+    MODULES_LOADED = True
+    print("✅ 프로젝트 모듈 로드 완료")
 
 except ImportError as e:
-    # 모듈 불러오기 실패 시 예외 처리
-    import streamlit as st
     st.warning(f"⚠️ 일부 모듈을 불러오지 못했습니다: {e}")
     MODULES_LOADED = False
-
 # 페이지 설정
 st.set_page_config(
     page_title="혈압 예측 AI 시스템",  # 브라우저 탭 제목
@@ -910,6 +904,7 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
 
