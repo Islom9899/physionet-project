@@ -11,22 +11,30 @@ import warnings
 
 # 경고 메시지 숨김
 warnings.filterwarnings('ignore')
+import streamlit as st              # 웹 애플리케이션 프레임워크
+import pandas as pd                 # 데이터 처리
+import numpy as np                  # 수치 계산
+import matplotlib.pyplot as plt     # 기본 차트
+import seaborn as sns              # 고급 시각화
+import plotly.express as px        # 인터랙티브 차트
+import plotly.graph_objects as go  # 커스텀 plotly 차트
+from plotly.subplots import make_subplots
+import os
+import warnings
+
+# 경고 메시지 숨김
+warnings.filterwarnings('ignore')
+
+# 모듈 로딩
 MODULES_LOADED = False
-
 try:
-    from physionet_predictor import PhysioNetBPPredictor
-    from langchain_processor import (
-        LangChainBPProcessor,
-        BloodPressureInsight,
-        DatasetInsight
-    )
+    from physionet_predictor import * # 혈압 예측 모델 모듈
+    from langchain_processor import * # AI 분석 (랭체인) 모듈
     MODULES_LOADED = True
-    print("✅ 프로젝트 모듈 로드 완료")
-
 except ImportError as e:
-    import streamlit as st
-    st.warning(f"⚠️ 일부 모듈을 불러오지 못했습니다: {e}")
-    MODULES_LOADED = False
+    # 모듈 없어도 기본 기능은 작동하도록 설계
+    st.warning(f"모듈 임포트 경고: {e}")
+    
 # 페이지 설정
 st.set_page_config(
     page_title="혈압 예측 AI 시스템",  # 브라우저 탭 제목
@@ -898,6 +906,7 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
 
