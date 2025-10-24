@@ -10,6 +10,14 @@ import numpy as np
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 
+load_dotenv(override=True)
+print("✅ 환경 변수 로드 완료")
+# Streamlit Secrets 이용하고 API Key 받기
+if "OPENAI_API_KEY" in st.secrets:
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+
+# API key 받기
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # LangChain 라이브러리 (선택적 임포트)
 try:
     from langchain_openai import ChatOpenAI
@@ -20,9 +28,6 @@ try:
 except ImportError:
     print("⚠️ LangChain 라이브러리가 설치되지 않았습니다. 기본 분석 기능만 사용됩니다.")
     LANGCHAIN_AVAILABLE = False
-
-load_dotenv(override=True)
-print("✅ 환경 변수 로드 완료")
 
 # ============================================================
 # 2. Pydantic 모델 정의 (구조화된 출력)
@@ -725,6 +730,7 @@ for i, implication in enumerate(dataset_analysis['clinical_implications'], 1):
     print(f"  {i}. {implication}")
 
 print(f"\n분석 출처: {dataset_analysis['source']}")
+
 
 
 
