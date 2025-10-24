@@ -2,6 +2,7 @@
 # 1. 필요한 라이브러리 임포트
 # ============================================================
 # 기본 라이브러리
+import streamlit as st
 import os
 from datetime import datetime
 from typing import Dict, List, Optional, Any
@@ -730,6 +731,7 @@ for i, implication in enumerate(dataset_analysis['clinical_implications'], 1):
     print(f"  {i}. {implication}")
 
 print(f"\n분석 출처: {dataset_analysis['source']}")
+
 
 
 
