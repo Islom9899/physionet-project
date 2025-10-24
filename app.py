@@ -14,23 +14,30 @@ warnings.filterwarnings('ignore')
 
 # 모듈 로딩
 MODULES_LOADED = False
-try:
-    from physionet_predictor import (
-    load_model,                # 모델 불러오기 함수
-    preprocess_patient_data,   # 데이터 전처리 함수
-    predict_blood_pressure,    # 혈압 예측 함수
-    visualize_results,         # 결과 시각화 함수 (있다면)
-)
 
-# LangChain Processor 관련 클래스 및 함수
-from langchain_processor import (
-    LangChainBPProcessor,      # AI 분석기 클래스
-    BloodPressureInsight,      # 개별 분석용 데이터 구조
-    DatasetInsight,            # 데이터셋 분석용 데이터 구조
-    MODULES_LOADED = True
+try:
+    # Physionet predictor 관련 함수
+    from physionet_predictor import (
+        load_model,
+        preprocess_patient_data,
+        predict_blood_pressure,
+        visualize_results,
+    )
+
+    # LangChain processor 관련 클래스
+    from langchain_processor import (
+        LangChainBPProcessor,
+        BloodPressureInsight,
+        DatasetInsight,
+    )
+
+    MODULES_LOADED = True  # ✅ 성공적으로 불러옴
+
 except ImportError as e:
-    # 모듈 없어도 기본 기능은 작동하도록 설계
-    st.warning(f"모듈 임포트 경고: {e}")
+    # 모듈 불러오기 실패 시 예외 처리
+    import streamlit as st
+    st.warning(f"⚠️ 일부 모듈을 불러오지 못했습니다: {e}")
+    MODULES_LOADED = False
 
 # 페이지 설정
 st.set_page_config(
@@ -903,6 +910,7 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
 
